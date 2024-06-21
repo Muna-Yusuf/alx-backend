@@ -3,7 +3,7 @@
 
 
 import csv
-import math
+from math import ceil
 from typing import List
 
 index_range = __import__('0-simple_helper_function').index_range
@@ -40,3 +40,26 @@ class Server:
             return self.dataset()[start_index:end_index]
         except IndexError:
             return []
+
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+        """ Returns a dictionary containing the following key-value pairs:
+             ** page_size: the length of the returned dataset page
+             ** page: the current page number
+             ** data: the dataset page(equivalent to return from previous task)
+             ** next_page: number of the next page, None if no next page
+             ** prev_page: number of the previous page,None if no previous page
+             ** total_pages: the total number of pages in the dataset as an int
+        """
+
+        page_data = self.get_page(page, page_size)
+        data_total = len(self.dataset())
+        page_total = ceil(data_total / page_size)
+
+        return {
+            'page_size': len(page_data),
+            'page': page,
+            'data': page_data,
+            'next_page': page + 1 if page < page_total else None,
+            'prev_page': page - 1 if page != 1 else None,
+            'total_pages': page_total
+        }
