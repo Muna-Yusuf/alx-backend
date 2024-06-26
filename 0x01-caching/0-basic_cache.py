@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Class BasicCache that inherits from BaseCaching and is a caching system."""
 
 
@@ -15,6 +15,4 @@ class BasicCache(BaseCaching):
 
     def get(self, key):
         """ Return the value in self.cache_data linked to key."""
-        if key is not:
-            return None
         return self.cache_data.get(key)
