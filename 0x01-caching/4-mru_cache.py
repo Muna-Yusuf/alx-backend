@@ -1,13 +1,13 @@
-#!/usr/bin/python3
-"""LIFO Cache class that inherits from BaseCaching"""
+#!/usr/bin/env python3
+"""MRU-Cache class that inherits from BaseCaching"""
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class LIFOCache(BaseCaching):
-    """ Defines LIFOCache """
+class MRUCache(BaseCaching):
+    """ Defines MRU-Cache """
 
     def __init__(self):
-        """ Init LIFOCache """
+        """ Init MRU-Cache """
         self.stack = []
         super().__init__()
 
@@ -25,4 +25,7 @@ class LIFOCache(BaseCaching):
 
     def get(self, key):
         """ Return the value in self.cache_data linked to key."""
+        if self.cache_data.get(key):
+            self.stack.remove(key)
+            self.stack.append(key)
         return self.cache_data.get(key)
