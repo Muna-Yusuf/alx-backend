@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Outputs “Welcome to Holberton” as page title and “Hello world” as header."""
 
-
 from flask import Flask
 from routes.routes_0 import app_routes
 
+
 app = Flask(__name__)
+
 app.register_blueprint(app_routes)
 
 
